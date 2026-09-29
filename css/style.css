@@ -1,0 +1,355 @@
+/* RESET */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* CONFIGURAÇÕES GERAIS */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    background-color: #f4f7f5;
+
+    color: #26332b;
+
+    min-height: 100vh;
+}
+
+
+/* CABEÇALHO */
+
+header {
+    background-color: #2e7d32;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 30px 20px;
+}
+
+header h1 {
+    margin-bottom: 8px;
+
+    font-size: 32px;
+}
+
+header p {
+    font-size: 16px;
+}
+
+
+/* CONTEÚDO */
+
+main {
+    width: 90%;
+
+    max-width: 900px;
+
+    margin: 30px auto;
+}
+
+
+/* CARDS */
+
+.card {
+    background-color: white;
+
+    border-radius: 12px;
+
+    padding: 25px;
+
+    margin-bottom: 25px;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.card h2 {
+    color: #2e7d32;
+
+    margin-bottom: 20px;
+}
+
+
+/* FORMULÁRIOS */
+
+.campo {
+    display: flex;
+
+    flex-direction: column;
+
+    margin-bottom: 18px;
+}
+
+.campo label {
+    font-weight: bold;
+
+    margin-bottom: 7px;
+}
+
+.campo input,
+.campo select {
+    padding: 12px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 7px;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+.campo input:focus,
+.campo select:focus {
+    border-color: #2e7d32;
+
+    box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.12);
+}
+
+
+/* LINHAS */
+
+.linha {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+}
+
+
+/* LGPD */
+
+.lgpd {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+
+    font-size: 14px;
+
+    line-height: 1.4;
+}
+
+.lgpd input {
+    margin-top: 3px;
+}
+
+
+/* BOTÕES */
+
+button {
+    width: 100%;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background-color: #2e7d32;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+button:hover {
+    background-color: #256628;
+}
+
+
+/* MENSAGEM */
+
+#mensagemCadastro {
+    margin-top: 15px;
+
+    font-weight: bold;
+}
+
+.sucesso {
+    color: #2e7d32;
+}
+
+.erro {
+    color: #c62828;
+}
+
+
+/* TÍTULO DA LISTA */
+
+.titulo-lista {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.titulo-lista h2 {
+    margin-bottom: 20px;
+}
+
+
+/* BOTÃO DE EXCLUSÃO */
+
+.btn-danger {
+    width: auto;
+
+    padding: 9px 15px;
+
+    background-color: #c62828;
+
+    font-size: 14px;
+}
+
+.btn-danger:hover {
+    background-color: #a51f1f;
+}
+
+
+/* ITEM DA DESPENSA */
+
+.ingrediente {
+    border: 1px solid #ddd;
+
+    border-left: 5px solid #2e7d32;
+
+    border-radius: 8px;
+
+    padding: 16px;
+
+    margin-bottom: 12px;
+
+    background-color: #fafafa;
+}
+
+.ingrediente-topo {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 10px;
+}
+
+.ingrediente h3 {
+    color: #2e7d32;
+}
+
+.ingrediente-info {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 8px;
+
+    font-size: 14px;
+}
+
+.btn-excluir {
+    width: auto;
+
+    padding: 7px 12px;
+
+    background-color: #e53935;
+
+    font-size: 13px;
+}
+
+.btn-excluir:hover {
+    background-color: #c62828;
+}
+
+
+/* LISTA VAZIA */
+
+.vazio {
+    text-align: center;
+
+    color: #777;
+
+    padding: 25px;
+}
+
+
+/* RODAPÉ */
+
+footer {
+    text-align: center;
+
+    padding: 25px;
+
+    color: #777;
+
+    font-size: 14px;
+}
+
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 600px) {
+
+    header h1 {
+        font-size: 25px;
+    }
+
+    main {
+        width: 95%;
+    }
+
+    .linha {
+        grid-template-columns: 1fr;
+
+        gap: 0;
+    }
+
+    .titulo-lista {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .titulo-lista h2 {
+        margin-bottom: 10px;
+    }
+
+    .btn-danger {
+        width: 100%;
+
+        margin-bottom: 15px;
+    }
+
+    .ingrediente-topo {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 10px;
+    }
+
+    .btn-excluir {
+        width: 100%;
+    }
+
+    .ingrediente-info {
+        grid-template-columns: 1fr;
+    }
+}
