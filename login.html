@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Entrar | Essencial Receitas</title>
+
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+
+    <header class="cabecalho">
+        <a href="index.html" class="logo">
+            <span class="logo-icone">🥗</span>
+            <span>Essencial <strong>Receitas</strong></span>
+        </a>
+
+        <nav class="menu">
+            <a href="index.html">Início</a>
+            <a href="despensa.html">Minha despensa</a>
+            <a href="receitas.html">Receitas</a>
+            <a href="mercados.html">Mercados</a>
+        </nav>
+
+        <a href="cadastro.html" class="botao-login">
+            Criar conta
+        </a>
+    </header>
+
+    <main class="auth-container">
+
+        <section class="auth-apresentacao">
+            <span class="etiqueta">
+                🌱 Sua cozinha mais inteligente
+            </span>
+
+            <h1>
+                Bom ter você de volta à
+                <span>sua cozinha!</span>
+            </h1>
+
+            <p>
+                Entre na sua conta para organizar sua despensa,
+                encontrar receitas e aproveitar melhor os alimentos.
+            </p>
+
+            <div class="auth-beneficio">
+                <span>🥬</span>
+                Organize os ingredientes que você tem em casa.
+            </div>
+
+            <div class="auth-beneficio">
+                <span>🍳</span>
+                Descubra receitas para o seu dia a dia.
+            </div>
+
+            <div class="auth-beneficio">
+                <span>🛒</span>
+                Planeje suas compras com mais praticidade.
+            </div>
+        </section>
+
+        <section class="auth-card">
+            <h2>Entrar na conta</h2>
+
+            <p class="auth-descricao">
+                Preencha seus dados para continuar.
+            </p>
+
+            <form
+                class="auth-form"
+                action="#"
+                method="post"
+                id="form-login"
+            >
+                <div class="auth-campo">
+                    <label for="email">E-mail</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="seuemail@exemplo.com"
+                        autocomplete="email"
+                        required
+                    >
+                </div>
+
+                <div class="auth-campo">
+                    <label for="senha">Senha</label>
+
+                    <input
+                        type="password"
+                        id="senha"
+                        name="senha"
+                        placeholder="Digite sua senha"
+                        autocomplete="current-password"
+                        required
+                    >
+                </div>
+
+                <div class="auth-opcoes">
+                    <label class="auth-checkbox">
+                        <input
+                            type="checkbox"
+                            name="lembrar"
+                        >
+                        Lembrar de mim
+                    </label>
+
+                    <a href="#"
+                       class="auth-link"
+                       id="recuperar-senha">
+                        Esqueci minha senha
+                    </a>
+                </div>
+
+                <button type="submit" class="auth-botao">
+                    Entrar →
+                </button>
+
+                <p
+                    class="auth-mensagem"
+                    id="mensagem-login"
+                    role="status"
+                    aria-live="polite"
+                ></p>
+            </form>
+
+            <div class="auth-rodape">
+                Ainda não tem uma conta?
+                <a href="cadastro.html" class="auth-link">
+                    Cadastre-se
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="rodape">
+        <a href="index.html" class="logo">
+            🥗 Essencial <strong>Receitas</strong>
+        </a>
+
+        <p>
+            Menos desperdício, mais sabor. © 2026 Essencial Receitas.
+        </p>
+    </footer>
+
+    <script>
+        const formLogin = document.getElementById("form-login");
+        const mensagemLogin = document.getElementById("mensagem-login");
+
+        formLogin.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            mensagemLogin.textContent =
+                "Formulário preenchido! O login precisa ser conectado a um sistema de autenticação.";
+        });
+
+        document.getElementById("recuperar-senha")
+            .addEventListener("click", function(event) {
+                event.preventDefault();
+
+                mensagemLogin.textContent =
+                    "A recuperação de senha precisa ser configurada no sistema.";
+            });
+    </script>
+
+</body>
+</html>

@@ -1,436 +1,224 @@
-// ==========================================
-// CADASTRO DO CLIENTE
-// ==========================================
 
-const cadastroForm = document.getElementById("cadastroForm");
+document.addEventListener("DOMContentLoaded", () => {
+    // ========================================
+    // 1. ELEMENTOS DA PÁGINA
+    // ========================================
 
-const mensagemCadastro =
-    document.getElementById("mensagemCadastro");
+    const menu = document.querySelector(".menu");
+    const cabecalho = document.querySelector(".cabecalho");
+    const hero = document.querySelector(".hero");
+    const cardsReceitas = document.querySelectorAll(".card-receita");
+    const cardsAtalhos = document.querySelectorAll(".card-atalho");
 
+    // ========================================
+    // 2. MENU RESPONSIVO
+    // ========================================
 
-cadastroForm.addEventListener("submit", function (event) {
+    if (menu && cabecalho) {
+        const botaoMenu = document.createElement("button");
 
-    event.preventDefault();
+        botaoMenu.type = "button";
+        botaoMenu.className = "botao-menu";
+        botaoMenu.innerHTML = "☰";
+        botaoMenu.setAttribute("aria-label", "Abrir menu");
+        botaoMenu.setAttribute("aria-expanded", "false");
 
+        cabecalho.insertBefore(botaoMenu, menu);
 
-    const nome =
-        document.getElementById("nome").value.trim();
+        botaoMenu.addEventListener("click", () => {
+            const aberto = menu.classList.toggle("menu-aberto");
 
-    const email =
-        document.getElementById("email").value.trim();
-
-    const senha =
-        document.getElementById("senha").value;
-
-    const lgpd =
-        document.getElementById("lgpd").checked;
-
-
-    // Validação
-
-    if (!nome || !email || !senha) {
-
-        mostrarMensagem(
-            "Preencha todos os campos.",
-            "erro"
-        );
-
-        return;
-    }
-
-
-    if (senha.length < 6) {
-
-        mostrarMensagem(
-            "A senha deve possuir pelo menos 6 caracteres.",
-            "erro"
-        );
-
-        return;
-    }
-
-
-    if (!lgpd) {
-
-        mostrarMensagem(
-            "É necessário aceitar os termos de privacidade.",
-            "erro"
-        );
-
-        return;
-    }
-
-
-    /*
-        IMPORTANTE:
-
-        Em um sistema real, a senha NÃO deve ser
-        armazenada diretamente no localStorage.
-
-        Aqui estamos armazenando apenas os dados
-        necessários para uma demonstração front-end.
-    */
-
-    const cliente = {
-        nome: nome,
-        email: email,
-        dataCadastro: new Date().toISOString(),
-        consentimentoLGPD: true
-    };
-
-
-    localStorage.setItem(
-        "cliente",
-        JSON.stringify(cliente)
-    );
-
-
-    mostrarMensagem(
-        `Cadastro realizado com sucesso, ${nome}!`,
-        "sucesso"
-    );
-
-
-    cadastroForm.reset();
-
-});
-
-
-// ==========================================
-// MENSAGEM DO CADASTRO
-// ==========================================
-
-function mostrarMensagem(texto, tipo) {
-
-    mensagemCadastro.textContent = texto;
-
-    mensagemCadastro.className = tipo;
-}
-
-
-// ==========================================
-// DESPENSA
-// ==========================================
-
-const ingredienteForm =
-    document.getElementById("ingredienteForm");
-
-const listaIngredientes =
-    document.getElementById("listaIngredientes");
-
-
-let ingredientes =
-    JSON.parse(
-        localStorage.getItem("ingredientes")
-    ) || [];
-
-
-// ==========================================
-// ADICIONAR INGREDIENTE
-// ==========================================
-
-ingredienteForm.addEventListener(
-    "submit",
-    function (event) {
-
-        event.preventDefault();
-
-
-        const nome =
-            document
-                .getElementById("ingrediente")
-                .value
-                .trim();
-
-        const quantidade =
-            document
-                .getElementById("quantidade")
-                .value;
-
-        const unidade =
-            document
-                .getElementById("unidade")
-                .value;
-
-        const categoria =
-            document
-                .getElementById("categoria")
-                .value;
-
-        const local =
-            document
-                .getElementById("local")
-                .value;
-
-        const validade =
-            document
-                .getElementById("validade")
-                .value;
-
-
-        // Validação
-
-        if (!nome || !quantidade) {
-
-            alert(
-                "Preencha o nome e a quantidade do ingrediente."
+            botaoMenu.innerHTML = aberto ? "✕" : "☰";
+            botaoMenu.setAttribute("aria-expanded", String(aberto));
+            botaoMenu.setAttribute(
+                "aria-label",
+                aberto ? "Fechar menu" : "Abrir menu"
             );
-
-            return;
-        }
-
-
-        // Criando objeto
-
-        const novoIngrediente = {
-
-            id: Date.now(),
-
-            nome: nome,
-
-            quantidade: quantidade,
-
-            unidade: unidade,
-
-            categoria: categoria,
-
-            local: local,
-
-            validade: validade
-
-        };
-
-
-        // Adiciona à lista
-
-        ingredientes.push(novoIngrediente);
-
-
-        // Salva no navegador
-
-        salvarIngredientes();
-
-
-        // Atualiza a tela
-
-        renderizarIngredientes();
-
-
-        // Limpa formulário
-
-        ingredienteForm.reset();
-
-    }
-);
-
-
-// ==========================================
-// SALVAR INGREDIENTES
-// ==========================================
-
-function salvarIngredientes() {
-
-    localStorage.setItem(
-        "ingredientes",
-        JSON.stringify(ingredientes)
-    );
-}
-
-
-// ==========================================
-// EXIBIR INGREDIENTES
-// ==========================================
-
-function renderizarIngredientes() {
-
-    listaIngredientes.innerHTML = "";
-
-
-    // Caso não existam ingredientes
-
-    if (ingredientes.length === 0) {
-
-        listaIngredientes.innerHTML = `
-            <p class="vazio">
-                Nenhum ingrediente cadastrado.
-            </p>
-        `;
-
-        return;
-    }
-
-
-    // Percorre os ingredientes
-
-    ingredientes.forEach(function (ingrediente) {
-
-        const div =
-            document.createElement("div");
-
-        div.classList.add("ingrediente");
-
-
-        let validadeFormatada =
-            "Não informada";
-
-
-        if (ingrediente.validade) {
-
-            const data =
-                new Date(
-                    ingrediente.validade + "T00:00:00"
-                );
-
-            validadeFormatada =
-                data.toLocaleDateString("pt-BR");
-        }
-
-
-        div.innerHTML = `
-
-            <div class="ingrediente-topo">
-
-                <h3>
-                    ${escaparHTML(ingrediente.nome)}
-                </h3>
-
-                <button
-                    class="btn-excluir"
-                    onclick="excluirIngrediente(${ingrediente.id})"
-                >
-                    Excluir
-                </button>
-
-            </div>
-
-
-            <div class="ingrediente-info">
-
-                <p>
-                    <strong>Quantidade:</strong>
-                    ${escaparHTML(ingrediente.quantidade)}
-                    ${escaparHTML(ingrediente.unidade)}
-                </p>
-
-                <p>
-                    <strong>Categoria:</strong>
-                    ${escaparHTML(ingrediente.categoria)}
-                </p>
-
-                <p>
-                    <strong>Local:</strong>
-                    ${escaparHTML(ingrediente.local)}
-                </p>
-
-                <p>
-                    <strong>Validade:</strong>
-                    ${validadeFormatada}
-                </p>
-
-            </div>
-        `;
-
-
-        listaIngredientes.appendChild(div);
-
-    });
-
-}
-
-
-// ==========================================
-// EXCLUIR INGREDIENTE
-// ==========================================
-
-function excluirIngrediente(id) {
-
-    const confirmar =
-        confirm(
-            "Deseja realmente excluir este ingrediente?"
-        );
-
-
-    if (!confirmar) {
-        return;
-    }
-
-
-    ingredientes =
-        ingredientes.filter(function (ingrediente) {
-
-            return ingrediente.id !== id;
-
         });
 
-
-    salvarIngredientes();
-
-    renderizarIngredientes();
-
-}
-
-
-// ==========================================
-// LIMPAR TODA A LISTA
-// ==========================================
-
-const limparLista =
-    document.getElementById("limparLista");
-
-
-limparLista.addEventListener(
-    "click",
-    function () {
-
-        if (ingredientes.length === 0) {
-
-            alert(
-                "A lista já está vazia."
-            );
-
-            return;
-        }
-
-
-        const confirmar =
-            confirm(
-                "Deseja excluir todos os ingredientes?"
-            );
-
-
-        if (!confirmar) {
-            return;
-        }
-
-
-        ingredientes = [];
-
-
-        salvarIngredientes();
-
-        renderizarIngredientes();
-
+        menu.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => {
+                menu.classList.remove("menu-aberto");
+                botaoMenu.innerHTML = "☰";
+                botaoMenu.setAttribute("aria-expanded", "false");
+            });
+        });
     }
-);
 
+    // ========================================
+    // 3. IDENTIFICAR A PÁGINA ATUAL NO MENU
+    // ========================================
 
-// ==========================================
-// PROTEÇÃO CONTRA HTML INJETADO
-// ==========================================
+    const paginaAtual = window.location.pathname.split("/").pop()
+        || "index.html";
 
-function escaparHTML(texto) {
+    document.querySelectorAll(".menu a").forEach((link) => {
+        const destino = link.getAttribute("href");
 
-    const elemento =
-        document.createElement("div");
+        if (destino === paginaAtual) {
+            link.classList.add("ativo");
+            link.setAttribute("aria-current", "page");
+        } else {
+            link.classList.remove("ativo");
+            link.removeAttribute("aria-current");
+        }
+    });
 
-    elemento.textContent = texto;
+    // ========================================
+    // 4. MENSAGENS DE INTERAÇÃO
+    // ========================================
 
-    return elemento.innerHTML;
-}
+    function mostrarMensagem(mensagem) {
+        let aviso = document.querySelector(".aviso-site");
 
+        if (!aviso) {
+            aviso = document.createElement("div");
+            aviso.className = "aviso-site";
+            aviso.setAttribute("role", "status");
+            aviso.setAttribute("aria-live", "polite");
+            document.body.appendChild(aviso);
+        }
 
-// ==========================================
-// CARREGAR DADOS AO ABRIR A PÁGINA
-// ==========================================
+        aviso.textContent = mensagem;
+        aviso.classList.add("aviso-visivel");
 
-renderizarIngredientes();
+        clearTimeout(mostrarMensagem.timer);
+
+        mostrarMensagem.timer = setTimeout(() => {
+            aviso.classList.remove("aviso-visivel");
+        }, 3000);
+    }
+
+    // ========================================
+    // 5. INTERAÇÃO COM AS RECEITAS
+    // ========================================
+
+    cardsReceitas.forEach((card) => {
+        const titulo = card.querySelector("h3");
+        const descricao = card.querySelector(".receita-info p");
+        const categoria = card.querySelector(".categoria");
+
+        if (!titulo) return;
+
+        card.setAttribute("tabindex", "0");
+        card.setAttribute("role", "button");
+        card.setAttribute(
+            "aria-label",
+            `Ver detalhes de ${titulo.textContent.trim()}`
+        );
+
+        function abrirReceita() {
+            const nome = titulo.textContent.trim();
+            const detalhes = descricao
+                ? descricao.textContent.trim()
+                : "";
+
+            const tipo = categoria
+                ? categoria.textContent.trim()
+                : "";
+
+            const destino = new URL("receitas.html", window.location.href);
+            destino.searchParams.set("receita", nome);
+
+            // Se a página de receitas existir, abre os detalhes nela.
+            window.location.href = destino.href;
+        }
+
+        card.addEventListener("click", abrirReceita);
+
+        card.addEventListener("keydown", (evento) => {
+            if (
+                evento.target === card &&
+                (evento.key === "Enter" || evento.key === " ")
+            ) {
+                evento.preventDefault();
+                abrirReceita();
+            }
+        });
+    });
+
+    // ========================================
+    // 6. INTERAÇÃO COM OS ATALHOS
+    // ========================================
+
+    cardsAtalhos.forEach((card) => {
+        card.addEventListener("mouseenter", () => {
+            card.classList.add("card-destacado");
+        });
+
+        card.addEventListener("mouseleave", () => {
+            card.classList.remove("card-destacado");
+        });
+    });
+
+    // ========================================
+    // 7. BOTÕES PRINCIPAIS
+    // ========================================
+
+    document.querySelectorAll(
+        ".botao-principal, .botao-secundario, .botao-chamada"
+    ).forEach((botao) => {
+        botao.addEventListener("click", () => {
+            botao.classList.add("botao-clicado");
+
+            setTimeout(() => {
+                botao.classList.remove("botao-clicado");
+            }, 180);
+        });
+    });
+
+    // ========================================
+    // 8. ANO AUTOMÁTICO NO RODAPÉ
+    // ========================================
+
+    const textoRodape = document.querySelector(".rodape p");
+
+    if (textoRodape) {
+        textoRodape.textContent =
+            `Menos desperdício, mais sabor. © ${new Date().getFullYear()} Essencial Receitas.`;
+    }
+
+    // ========================================
+    // 9. IMAGENS COM TRATAMENTO DE ERRO
+    // ========================================
+
+    document.querySelectorAll("img").forEach((imagem) => {
+        imagem.addEventListener("error", () => {
+            imagem.alt = imagem.alt || "Imagem indisponível";
+            imagem.classList.add("imagem-indisponivel");
+        });
+    });
+
+    // ========================================
+    // 10. ANIMAÇÃO DE ENTRADA DAS SEÇÕES
+    // ========================================
+
+    const secoes = document.querySelectorAll(
+        ".hero, .atalhos, .receitas, .chamada"
+    );
+
+    if ("IntersectionObserver" in window) {
+        const observador = new IntersectionObserver(
+            (entradas, observer) => {
+                entradas.forEach((entrada) => {
+                    if (entrada.isIntersecting) {
+                        entrada.target.classList.add("secao-visivel");
+                        observer.unobserve(entrada.target);
+                    }
+                });
+            },
+            {
+                threshold: 0.1
+            }
+        );
+
+        secoes.forEach((secao) => {
+            secao.classList.add("secao-animada");
+            observador.observe(secao);
+        });
+    } else {
+        secoes.forEach((secao) => {
+            secao.classList.add("secao-visivel");
+        });
+    }
+});

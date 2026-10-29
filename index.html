@@ -1,245 +1,183 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <title>Essencial Receitas</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-     <header>
-        <h1>Despensa Virtual</h1>
-        <p>Organize seus ingredientes de forma simples e segura.</p>
+
+    <header class="cabecalho">
+        <a href="index.html" class="logo">
+            <span class="logo-icone">🥗</span>
+            <span>Essencial <strong>Receitas</strong></span>
+        </a>
+
+        <nav class="menu">
+            <a href="index.html" class="ativo">Início</a>
+            <a href="despensa.html">Minha despensa</a>
+            <a href="receitas.html">Receitas</a>
+            <a href="mercados.html">Mercados</a>
+        </nav>
+
+        <a href="login.html" class="botao-login">Entrar</a>
     </header>
 
     <main>
 
-        <!-- CADASTRO DO CLIENTE -->
-        <section class="card">
-            <h2>Cadastro do Cliente</h2>
+        <section class="hero">
+            <div class="hero-texto">
+                <span class="etiqueta">🌱 Cozinhe melhor, desperdice menos</span>
 
-            <form id="cadastroForm">
+                <h1>Você tem os ingredientes.<br>
+                    Nós temos a <span>receita!</span>
+                </h1>
 
-                <div class="campo">
-                    <label for="nome">Nome completo</label>
-                    <input
-                        type="text"
-                        id="nome"
-                        placeholder="Digite seu nome"
-                        required
-                    >
-                </div>
-
-                <div class="campo">
-                    <label for="email">E-mail</label>
-                    <input
-                        type="email"
-                        id="email"
-                        placeholder="Digite seu e-mail"
-                        required
-                    >
-                </div>
-
-                <div class="campo">
-                    <label for="senha">Senha</label>
-                    <input
-                        type="password"
-                        id="senha"
-                        placeholder="Digite sua senha"
-                        minlength="6"
-                        required
-                    >
-                </div>
-
-                <div class="lgpd">
-                    <input type="checkbox" id="lgpd" required>
-
-                    <label for="lgpd">
-                        Concordo com o tratamento dos meus dados
-                        conforme a LGPD.
-                    </label>
-                </div>
-
-                <button type="submit">
-                    Cadastrar
-                </button>
-
-            </form>
-
-            <p id="mensagemCadastro"></p>
-        </section>
-
-
-        <!-- DESPENSA -->
-        <section class="card">
-
-            <h2>Minha Despensa</h2>
-
-            <form id="ingredienteForm">
-
-                <div class="campo">
-                    <label for="ingrediente">Ingrediente</label>
-
-                    <input
-                        type="text"
-                        id="ingrediente"
-                        placeholder="Ex: Arroz"
-                        required
-                    >
-                </div>
-
-                <div class="linha">
-
-                    <div class="campo">
-                        <label for="quantidade">Quantidade</label>
-
-                        <input
-                            type="number"
-                            id="quantidade"
-                            min="1"
-                            placeholder="Ex: 2"
-                            required
-                        >
-                    </div>
-
-                    <div class="campo">
-                        <label for="unidade">Unidade</label>
-
-                        <select id="unidade">
-                            <option value="unidade">Unidade</option>
-                            <option value="kg">Kg</option>
-                            <option value="g">Gramas</option>
-                            <option value="l">Litros</option>
-                            <option value="ml">Ml</option>
-                        </select>
-                    </div>
-
-                </div>
-
-
-                <div class="linha">
-
-                    <div class="campo">
-                        <label for="categoria">Categoria</label>
-
-                        <select id="categoria">
-
-                            <option value="Grãos">
-                                Grãos
-                            </option>
-
-                            <option value="Frutas">
-                                Frutas
-                            </option>
-
-                            <option value="Verduras">
-                                Verduras
-                            </option>
-
-                            <option value="Carnes">
-                                Carnes
-                            </option>
-
-                            <option value="Laticínios">
-                                Laticínios
-                            </option>
-
-                            <option value="Bebidas">
-                                Bebidas
-                            </option>
-
-                            <option value="Outros">
-                                Outros
-                            </option>
-
-                        </select>
-                    </div>
-
-
-                    <div class="campo">
-                        <label for="local">Local</label>
-
-                        <select id="local">
-
-                            <option value="Geladeira">
-                                Geladeira
-                            </option>
-
-                            <option value="Despensa">
-                                Despensa
-                            </option>
-
-                            <option value="Freezer">
-                                Freezer
-                            </option>
-
-                        </select>
-                    </div>
-
-                </div>
-
-
-                <div class="campo">
-
-                    <label for="validade">
-                        Data de validade
-                    </label>
-
-                    <input
-                        type="date"
-                        id="validade"
-                    >
-
-                </div>
-
-
-                <button type="submit">
-                    Adicionar ingrediente
-                </button>
-
-            </form>
-
-        </section>
-
-
-        <!-- LISTA DE INGREDIENTES -->
-        <section class="card">
-
-            <div class="titulo-lista">
-
-                <h2>
-                    Ingredientes cadastrados
-                </h2>
-
-                <button
-                    type="button"
-                    id="limparLista"
-                    class="btn-danger"
-                >
-                    Limpar lista
-                </button>
-
-            </div>
-
-
-            <div id="listaIngredientes">
-
-                <p class="vazio">
-                    Nenhum ingrediente cadastrado.
+                <p>
+                    Descubra receitas com os ingredientes que você já tem
+                    em casa e aproveite melhor cada alimento.
                 </p>
 
+                <div class="hero-botoes">
+                    <a href="receitas.html" class="botao-principal">
+                        Encontrar receitas →
+                    </a>
+
+                    <a href="despensa.html" class="botao-secundario">
+                        Minha despensa
+                    </a>
+                </div>
+
+                <div class="beneficios">
+                    <span>✓ Menos desperdício</span>
+                    <span>✓ Receitas práticas</span>
+                </div>
             </div>
 
+            <div class="hero-imagem">
+                <img
+                    src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85"
+                    alt="Prato saudável com vegetais frescos"
+                >
+
+                <div class="cartao-dica">
+                    <span>🥕</span>
+                    <div>
+                        <strong>Aproveite seus alimentos</strong>
+                        <p>Encontre novas combinações.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="atalhos">
+            <div class="titulo-secao">
+                <div>
+                    <span class="subtitulo">POR ONDE COMEÇAR?</span>
+                    <h2>Sua cozinha, mais inteligente</h2>
+                </div>
+                <p>Tudo o que você precisa em um só lugar.</p>
+            </div>
+
+            <div class="grade-atalhos">
+
+                <a href="despensa.html" class="card-atalho">
+                    <div class="icone icone-verde">🥬</div>
+                    <h3>Minha despensa</h3>
+                    <p>Organize os ingredientes que você tem em casa.</p>
+                    <span class="link-card">Organizar despensa →</span>
+                </a>
+
+                <a href="receitas.html" class="card-atalho">
+                    <div class="icone icone-amarelo">🍳</div>
+                    <h3>Encontrar receitas</h3>
+                    <p>Descubra pratos que combinam com seus ingredientes.</p>
+                    <span class="link-card">Ver receitas →</span>
+                </a>
+
+                <a href="mercados.html" class="card-atalho">
+                    <div class="icone icone-rosa">🛒</div>
+                    <h3>Mercados próximos</h3>
+                    <p>Encontre os ingredientes que estão faltando.</p>
+                    <span class="link-card">Encontrar mercados →</span>
+                </a>
+
+            </div>
+        </section>
+
+        <section class="receitas">
+            <div class="titulo-secao">
+                <div>
+                    <span class="subtitulo">INSPIRAÇÃO PARA HOJE</span>
+                    <h2>Receitas para experimentar</h2>
+                </div>
+                <a href="receitas.html" class="ver-todas">
+                    Ver todas →
+                </a>
+            </div>
+
+            <div class="grade-receitas">
+
+                <article class="card-receita">
+                    <img
+                        src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=600&q=80"
+                        alt="Macarrão com vegetais"
+                    >
+                    <div class="receita-info">
+                        <span class="categoria">FÁCIL · 20 MIN</span>
+                        <h3>Macarrão especial</h3>
+                        <p>Uma opção prática para o almoço.</p>
+                    </div>
+                </article>
+
+                <article class="card-receita">
+                    <img
+                        src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80"
+                        alt="Salada fresca e colorida"
+                    >
+                    <div class="receita-info">
+                        <span class="categoria">SAUDÁVEL · 15 MIN</span>
+                        <h3>Salada colorida</h3>
+                        <p>Uma combinação leve e nutritiva.</p>
+                    </div>
+                </article>
+
+                <article class="card-receita">
+                    <img
+                        src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=600&q=80"
+                        alt="Sanduíche com ingredientes frescos"
+                    >
+                    <div class="receita-info">
+                        <span class="categoria">RÁPIDO · 10 MIN</span>
+                        <h3>Lanche caseiro</h3>
+                        <p>Ideal para uma refeição rápida.</p>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <section class="chamada">
+            <div>
+                <h2>Não sabe o que cozinhar?</h2>
+                <p>Cadastre seus ingredientes e deixe o Essencial Receitas ajudar.</p>
+            </div>
+            <a href="despensa.html" class="botao-chamada">
+                Montar minha despensa →
+            </a>
         </section>
 
     </main>
 
-
-    <footer>
-        <p>
-            © 2026 - Despensa Virtual
-        </p>
+    <footer class="rodape">
+        <a href="index.html" class="logo">
+            🥗 Essencial <strong>Receitas</strong>
+        </a>
+        <p>Menos desperdício, mais sabor. © 2026 Essencial Receitas.</p>
     </footer>
-    <script src="/js/script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

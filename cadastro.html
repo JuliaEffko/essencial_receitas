@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Criar conta | Essencial Receitas</title>
+
+    <link rel="stylesheet" href="css/cadastro.css">
+</head>
+
+<body>
+
+    <header class="cabecalho">
+        <a href="index.html" class="logo">
+            <span class="logo-icone">🥗</span>
+            <span>Essencial <strong>Receitas</strong></span>
+        </a>
+
+        <nav class="menu">
+            <a href="index.html">Início</a>
+            <a href="despensa.html">Minha despensa</a>
+            <a href="receitas.html">Receitas</a>
+            <a href="mercados.html">Mercados</a>
+        </nav>
+
+        <a href="login.html" class="botao-login">
+            Entrar
+        </a>
+    </header>
+
+    <main class="auth-container">
+
+        <section class="auth-apresentacao">
+            <span class="etiqueta">
+                🥗 Comece gratuitamente
+            </span>
+
+            <h1>
+                Sua próxima receita começa
+                <span>aqui!</span>
+            </h1>
+
+            <p>
+                Crie sua conta no Essencial Receitas e transforme
+                os ingredientes que você já tem em novas possibilidades.
+            </p>
+
+            <div class="auth-beneficio">
+                <span>✓</span>
+                Tenha seus ingredientes organizados.
+            </div>
+
+            <div class="auth-beneficio">
+                <span>✓</span>
+                Encontre receitas para o que já tem em casa.
+            </div>
+
+            <div class="auth-beneficio">
+                <span>✓</span>
+                Evite desperdícios e planeje suas compras.
+            </div>
+        </section>
+
+        <section class="auth-card auth-card-cadastro">
+            <h2>Criar minha conta</h2>
+
+            <p class="auth-descricao">
+                É rápido! Preencha os dados abaixo.
+            </p>
+
+            <form
+                class="auth-form auth-form-cadastro"
+                action="#"
+                method="post"
+                id="form-cadastro"
+            >
+                <div class="auth-campo">
+                    <label for="nome">Nome completo</label>
+
+                    <input
+                        type="text"
+                        id="nome"
+                        name="nome"
+                        placeholder="Como podemos chamar você?"
+                        autocomplete="name"
+                        required
+                    >
+                </div>
+
+                <div class="auth-campo">
+                    <label for="email">E-mail</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="seuemail@exemplo.com"
+                        autocomplete="email"
+                        required
+                    >
+                </div>
+
+                <div class="auth-dupla">
+                    <div class="auth-campo">
+                        <label for="senha">Senha</label>
+
+                        <input
+                            type="password"
+                            id="senha"
+                            name="senha"
+                            placeholder="Mínimo de 8 caracteres"
+                            autocomplete="new-password"
+                            minlength="8"
+                            required
+                        >
+                    </div>
+
+                    <div class="auth-campo">
+                        <label for="confirmar-senha">
+                            Confirmar senha
+                        </label>
+
+                        <input
+                            type="password"
+                            id="confirmar-senha"
+                            name="confirmar_senha"
+                            placeholder="Repita a senha"
+                            autocomplete="new-password"
+                            minlength="8"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <label class="auth-checkbox">
+                    <input
+                        type="checkbox"
+                        id="termos"
+                        name="termos"
+                        required
+                    >
+                    <span class="auth-termos">
+                        Li e aceito os termos de uso e a política de privacidade.
+                    </span>
+                </label>
+
+                <button type="submit" class="auth-botao">
+                    Criar minha conta →
+                </button>
+
+                <p
+                    class="auth-mensagem"
+                    id="mensagem-cadastro"
+                    role="status"
+                    aria-live="polite"
+                ></p>
+            </form>
+
+            <div class="auth-rodape">
+                Já tem uma conta?
+                <a href="login.html" class="auth-link">
+                    Entre aqui
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="rodape">
+        <a href="index.html" class="logo">
+            🥗 Essencial <strong>Receitas</strong>
+        </a>
+
+        <p>
+            Menos desperdício, mais sabor. © 2026 Essencial Receitas.
+        </p>
+    </footer>
+
+    <script>
+        const formCadastro = document.getElementById("form-cadastro");
+        const senha = document.getElementById("senha");
+        const confirmarSenha = document.getElementById("confirmar-senha");
+        const mensagemCadastro = document.getElementById("mensagem-cadastro");
+
+        confirmarSenha.addEventListener("input", function() {
+            confirmarSenha.setCustomValidity(
+                confirmarSenha.value === senha.value
+                    ? ""
+                    : "As senhas não são iguais."
+            );
+        });
+
+        senha.addEventListener("input", function() {
+            confirmarSenha.setCustomValidity(
+                confirmarSenha.value === senha.value
+                    ? ""
+                    : "As senhas não são iguais."
+            );
+        });
+
+        formCadastro.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            if (senha.value !== confirmarSenha.value) {
+                confirmarSenha.setCustomValidity("As senhas não são iguais.");
+                confirmarSenha.reportValidity();
+                return;
+            }
+
+            mensagemCadastro.textContent =
+                "Dados validados! O cadastro precisa ser conectado a um sistema de autenticação para criar a conta.";
+        });
+    </script>
+
+</body>
+</html>

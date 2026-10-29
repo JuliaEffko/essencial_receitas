@@ -1,4 +1,10 @@
-/* RESET */
+
+/* ========================================
+   ESSENCIAL RECEITAS
+   Tema: Verde + Vermelho
+   ======================================== */
+
+/* 1. CONFIGURAÇÕES GERAIS */
 
 * {
     margin: 0;
@@ -6,350 +12,620 @@
     box-sizing: border-box;
 }
 
+:root {
+    --verde: #347653;
+    --verde-escuro: #214c36;
+    --verde-claro: #eaf3e9;
 
-/* CONFIGURAÇÕES GERAIS */
+    --vermelho: #d94343;
+    --vermelho-escuro: #b92f36;
+    --vermelho-claro: #fff0ef;
+
+    --fundo: #fbfaf6;
+    --texto: #26372c;
+    --texto-suave: #68736a;
+    --branco: #ffffff;
+
+    --borda: #e9ece5;
+    --sombra: 0 8px 25px rgba(38, 55, 44, 0.08);
+}
+
+html {
+    scroll-behavior: smooth;
+}
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-
-    background-color: #f4f7f5;
-
-    color: #26332b;
-
-    min-height: 100vh;
+    background: var(--fundo);
+    color: var(--texto);
+    line-height: 1.6;
 }
 
-
-/* CABEÇALHO */
-
-header {
-    background-color: #2e7d32;
-
-    color: white;
-
-    text-align: center;
-
-    padding: 30px 20px;
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
-header h1 {
-    margin-bottom: 8px;
-
-    font-size: 32px;
+img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
 }
-
-header p {
-    font-size: 16px;
-}
-
-
-/* CONTEÚDO */
-
-main {
-    width: 90%;
-
-    max-width: 900px;
-
-    margin: 30px auto;
-}
-
-
-/* CARDS */
-
-.card {
-    background-color: white;
-
-    border-radius: 12px;
-
-    padding: 25px;
-
-    margin-bottom: 25px;
-
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-}
-
-.card h2 {
-    color: #2e7d32;
-
-    margin-bottom: 20px;
-}
-
-
-/* FORMULÁRIOS */
-
-.campo {
-    display: flex;
-
-    flex-direction: column;
-
-    margin-bottom: 18px;
-}
-
-.campo label {
-    font-weight: bold;
-
-    margin-bottom: 7px;
-}
-
-.campo input,
-.campo select {
-    padding: 12px;
-
-    border: 1px solid #ccc;
-
-    border-radius: 7px;
-
-    font-size: 15px;
-
-    outline: none;
-}
-
-.campo input:focus,
-.campo select:focus {
-    border-color: #2e7d32;
-
-    box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.12);
-}
-
-
-/* LINHAS */
-
-.linha {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 20px;
-}
-
-
-/* LGPD */
-
-.lgpd {
-    display: flex;
-
-    align-items: flex-start;
-
-    gap: 10px;
-
-    margin-bottom: 20px;
-
-    font-size: 14px;
-
-    line-height: 1.4;
-}
-
-.lgpd input {
-    margin-top: 3px;
-}
-
-
-/* BOTÕES */
 
 button {
-    width: 100%;
-
-    padding: 13px;
-
-    border: none;
-
-    border-radius: 7px;
-
-    background-color: #2e7d32;
-
-    color: white;
-
-    font-size: 16px;
-
-    font-weight: bold;
-
+    font-family: inherit;
     cursor: pointer;
+}
 
+/* 2. CABEÇALHO */
+
+.cabecalho {
+    min-height: 82px;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    background: var(--branco);
+    border-bottom: 3px solid var(--vermelho);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 21px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.logo strong {
+    color: var(--vermelho);
+}
+
+.logo-icone {
+    font-size: 28px;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 27px;
+}
+
+.menu a {
+    position: relative;
+    font-size: 14px;
+    color: var(--texto-suave);
+    transition: color 0.2s;
+}
+
+.menu a:hover,
+.menu a.ativo {
+    color: var(--vermelho);
+    font-weight: bold;
+}
+
+.menu a.ativo::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--vermelho);
+    border-radius: 2px;
+}
+
+.botao-login {
+    padding: 10px 22px;
+    border: 1px solid var(--vermelho);
+    color: var(--vermelho);
+    border-radius: 9px;
+    font-weight: bold;
+    white-space: nowrap;
     transition: 0.2s;
 }
 
-button:hover {
-    background-color: #256628;
+.botao-login:hover {
+    background: var(--vermelho-claro);
+    transform: translateY(-2px);
 }
 
+/* 3. APRESENTAÇÃO PRINCIPAL */
 
-/* MENSAGEM */
-
-#mensagemCadastro {
-    margin-top: 15px;
-
-    font-weight: bold;
-}
-
-.sucesso {
-    color: #2e7d32;
-}
-
-.erro {
-    color: #c62828;
-}
-
-
-/* TÍTULO DA LISTA */
-
-.titulo-lista {
-    display: flex;
-
+.hero {
+    padding: 65px 7% 75px;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
     align-items: center;
-
-    justify-content: space-between;
-
-    gap: 20px;
+    gap: 55px;
 }
 
-.titulo-lista h2 {
+.hero-texto {
+    max-width: 600px;
+}
+
+.etiqueta {
+    display: inline-block;
+    padding: 8px 14px;
+    background: var(--vermelho-claro);
+    color: var(--vermelho-escuro);
+    border: 1px solid #f5d4d1;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 22px;
+}
+
+.hero h1 {
+    font-size: clamp(34px, 4vw, 52px);
+    line-height: 1.16;
+    letter-spacing: -1.5px;
     margin-bottom: 20px;
 }
 
-
-/* BOTÃO DE EXCLUSÃO */
-
-.btn-danger {
-    width: auto;
-
-    padding: 9px 15px;
-
-    background-color: #c62828;
-
-    font-size: 14px;
+.hero h1 span {
+    color: var(--vermelho);
 }
 
-.btn-danger:hover {
-    background-color: #a51f1f;
+.hero-texto > p {
+    color: var(--texto-suave);
+    font-size: 17px;
+    max-width: 490px;
+    margin-bottom: 28px;
 }
 
-
-/* ITEM DA DESPENSA */
-
-.ingrediente {
-    border: 1px solid #ddd;
-
-    border-left: 5px solid #2e7d32;
-
-    border-radius: 8px;
-
-    padding: 16px;
-
-    margin-bottom: 12px;
-
-    background-color: #fafafa;
-}
-
-.ingrediente-topo {
+.hero-botoes {
     display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    margin-bottom: 10px;
+    gap: 13px;
+    flex-wrap: wrap;
 }
 
-.ingrediente h3 {
-    color: #2e7d32;
+.botao-principal,
+.botao-secundario {
+    display: inline-block;
+    padding: 14px 21px;
+    border-radius: 9px;
+    font-weight: bold;
+    transition: transform 0.2s, background 0.2s;
 }
 
-.ingrediente-info {
-    display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 8px;
-
-    font-size: 14px;
+.botao-principal {
+    background: var(--vermelho);
+    color: var(--branco);
+    box-shadow: 0 5px 12px rgba(217, 67, 67, 0.18);
 }
 
-.btn-excluir {
-    width: auto;
+.botao-principal:hover {
+    background: var(--vermelho-escuro);
+    transform: translateY(-2px);
+}
 
-    padding: 7px 12px;
+.botao-secundario {
+    border: 1px solid #d7ded4;
+    background: var(--branco);
+    color: var(--verde-escuro);
+}
 
-    background-color: #e53935;
+.botao-secundario:hover {
+    background: var(--verde-claro);
+    border-color: var(--verde);
+}
 
+.beneficios {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 27px;
+    color: var(--texto-suave);
     font-size: 13px;
 }
 
-.btn-excluir:hover {
-    background-color: #c62828;
+.beneficios span::first-letter {
+    color: var(--vermelho);
 }
 
+/* 4. IMAGEM PRINCIPAL */
 
-/* LISTA VAZIA */
-
-.vazio {
-    text-align: center;
-
-    color: #777;
-
-    padding: 25px;
+.hero-imagem {
+    position: relative;
 }
 
+.hero-imagem > img {
+    height: 390px;
+    border-radius: 24px;
+    border: 3px solid var(--branco);
+    box-shadow: var(--sombra);
+}
 
-/* RODAPÉ */
+.cartao-dica {
+    position: absolute;
+    bottom: 20px;
+    left: -25px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--branco);
+    padding: 15px 18px;
+    border-radius: 13px;
+    border-left: 4px solid var(--vermelho);
+    box-shadow: var(--sombra);
+}
 
-footer {
-    text-align: center;
+.cartao-dica > span {
+    font-size: 30px;
+}
 
-    padding: 25px;
+.cartao-dica strong {
+    font-size: 13px;
+}
 
-    color: #777;
+.cartao-dica p {
+    font-size: 12px;
+    color: var(--texto-suave);
+}
 
+/* 5. SEÇÕES E TÍTULOS */
+
+.atalhos,
+.receitas {
+    padding: 35px 7% 65px;
+}
+
+.titulo-secao {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.subtitulo {
+    color: var(--vermelho);
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    font-weight: bold;
+}
+
+.titulo-secao h2 {
+    font-size: 27px;
+    line-height: 1.3;
+    margin-top: 6px;
+}
+
+.titulo-secao > p {
+    color: var(--texto-suave);
     font-size: 14px;
 }
 
+/* 6. CARDS DE ATALHO */
 
-/* RESPONSIVIDADE */
+.grade-atalhos {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
 
-@media (max-width: 600px) {
+.card-atalho {
+    background: var(--branco);
+    border: 1px solid var(--borda);
+    border-radius: 15px;
+    padding: 25px;
+    transition: transform 0.2s, box-shadow 0.2s,
+                border-color 0.2s;
+}
 
-    header h1 {
-        font-size: 25px;
+.card-atalho:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sombra);
+    border-color: #edc4c1;
+}
+
+.icone {
+    width: 52px;
+    height: 52px;
+    border-radius: 13px;
+    display: grid;
+    place-items: center;
+    font-size: 26px;
+    margin-bottom: 17px;
+}
+
+.icone-verde {
+    background: var(--verde-claro);
+}
+
+.icone-amarelo {
+    background: #fff1ce;
+}
+
+.icone-rosa {
+    background: var(--vermelho-claro);
+}
+
+.card-atalho h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.card-atalho p {
+    font-size: 14px;
+    color: var(--texto-suave);
+    min-height: 48px;
+    margin-bottom: 15px;
+}
+
+.link-card {
+    color: var(--vermelho);
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.link-card:hover {
+    color: var(--vermelho-escuro);
+}
+
+/* 7. CARDS DE RECEITAS */
+
+.receitas {
+    padding-top: 10px;
+}
+
+.ver-todas {
+    color: var(--vermelho);
+    font-size: 13px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.ver-todas:hover {
+    color: var(--vermelho-escuro);
+}
+
+.grade-receitas {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.card-receita {
+    background: var(--branco);
+    border: 1px solid var(--borda);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-receita:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sombra);
+}
+
+.card-receita > img {
+    height: 210px;
+}
+
+.receita-info {
+    padding: 20px;
+    border-top: 2px solid var(--vermelho-claro);
+}
+
+.categoria {
+    font-size: 10px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    color: var(--vermelho);
+}
+
+.receita-info h3 {
+    font-size: 19px;
+    margin: 8px 0 5px;
+}
+
+.receita-info p {
+    color: var(--texto-suave);
+    font-size: 13px;
+}
+
+/* 8. CHAMADA FINAL */
+
+.chamada {
+    margin: 5px 7% 65px;
+    padding: 35px;
+    border-radius: 18px;
+    background: var(--verde-escuro);
+    border-left: 6px solid var(--vermelho);
+    color: var(--branco);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+}
+
+.chamada h2 {
+    font-size: 25px;
+    margin-bottom: 6px;
+}
+
+.chamada p {
+    font-size: 14px;
+    color: #e0ebe2;
+}
+
+.botao-chamada {
+    padding: 13px 20px;
+    border-radius: 9px;
+    background: var(--vermelho);
+    color: var(--branco);
+    font-size: 13px;
+    font-weight: bold;
+    white-space: nowrap;
+    transition: 0.2s;
+}
+
+.botao-chamada:hover {
+    background: var(--vermelho-escuro);
+    transform: translateY(-2px);
+}
+
+/* 9. RODAPÉ */
+
+.rodape {
+    padding: 27px 7%;
+    background: var(--branco);
+    border-top: 3px solid var(--vermelho);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.rodape p {
+    color: var(--texto-suave);
+    font-size: 12px;
+}
+
+/* 10. ACESSIBILIDADE E INTERAÇÃO */
+
+a:focus-visible {
+    outline: 3px solid var(--vermelho);
+    outline-offset: 4px;
+}
+
+::selection {
+    background: var(--vermelho);
+    color: var(--branco);
+}
+
+/* 11. TABLETS */
+
+@media (max-width: 1000px) {
+    .cabecalho {
+        flex-wrap: wrap;
     }
 
-    main {
-        width: 95%;
-    }
-
-    .linha {
-        grid-template-columns: 1fr;
-
-        gap: 0;
-    }
-
-    .titulo-lista {
-        flex-direction: column;
-
-        align-items: stretch;
-    }
-
-    .titulo-lista h2 {
-        margin-bottom: 10px;
-    }
-
-    .btn-danger {
+    .menu {
+        order: 3;
         width: 100%;
-
-        margin-bottom: 15px;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 18px;
     }
 
-    .ingrediente-topo {
-        flex-direction: column;
-
-        align-items: flex-start;
-
-        gap: 10px;
+    .hero {
+        gap: 30px;
     }
 
-    .btn-excluir {
-        width: 100%;
+    .hero-imagem > img {
+        height: 320px;
     }
 
-    .ingrediente-info {
+    .cartao-dica {
+        left: -10px;
+    }
+}
+
+/* 12. CELULARES */
+
+@media (max-width: 650px) {
+    .cabecalho {
+        padding: 17px 5%;
+    }
+
+    .logo {
+        font-size: 18px;
+    }
+
+    .menu {
+        gap: 12px;
+    }
+
+    .menu a {
+        font-size: 12px;
+    }
+
+    .botao-login {
+        padding: 8px 13px;
+        font-size: 13px;
+    }
+
+    .hero {
         grid-template-columns: 1fr;
+        padding: 40px 5% 50px;
+        gap: 35px;
+    }
+
+    .hero h1 {
+        font-size: 37px;
+    }
+
+    .hero-texto > p {
+        font-size: 15px;
+    }
+
+    .hero-imagem > img {
+        height: 270px;
+    }
+
+    .cartao-dica {
+        left: 10px;
+        bottom: 12px;
+    }
+
+    .atalhos,
+    .receitas {
+        padding: 25px 5% 45px;
+    }
+
+    .titulo-secao {
+        align-items: start;
+        flex-direction: column;
+    }
+
+    .titulo-secao h2 {
+        font-size: 24px;
+    }
+
+    .grade-atalhos,
+    .grade-receitas {
+        grid-template-columns: 1fr;
+    }
+
+    .card-atalho p {
+        min-height: auto;
+    }
+
+    .card-receita > img {
+        height: 230px;
+    }
+
+    .chamada {
+        margin: 0 5% 40px;
+        padding: 25px;
+        flex-direction: column;
+        align-items: start;
+    }
+
+    .chamada h2 {
+        font-size: 22px;
+    }
+
+    .rodape {
+        padding: 25px 5%;
+        flex-direction: column;
+        align-items: start;
+    }
+}
+
+/* 13. REDUZIR ANIMAÇÕES SE PREFERIDO */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
     }
 }
